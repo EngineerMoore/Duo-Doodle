@@ -2,6 +2,8 @@ const Homepage = () => {
   return (
     <>
       <h2>Welcome to Duo-Doodle!</h2>
+      <button>Play Game</button>
+
       <h3>Artist</h3>
       <p>
         As the artist, you will be given a prompt. It is your job to make each prompt
@@ -21,6 +23,7 @@ const Homepage = () => {
       </p>
       {/*TODO: add img link */}
       <img alt="gif of user submitting their guess"/>
+
       </>
   )
 }
