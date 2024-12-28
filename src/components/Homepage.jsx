@@ -1,7 +1,6 @@
 const Homepage = () => {
   return (
     <>
-      <h1>Duo-Doodle</h1>
       <h2>Welcome to Duo-Doodle!</h2>
       <h3>Artist</h3>
       <p>
