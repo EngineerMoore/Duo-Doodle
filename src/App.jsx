@@ -1,8 +1,10 @@
-function App() {
+import Homepage from "./components/Homepage"
+
+const App = () => {
 
   return (
     <>
-      <h1>Duo-Doodle</h1>
+      <Homepage />
     </>
   )
 }
