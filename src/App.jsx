@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Homepage from "./components/Homepage"
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -9,6 +10,7 @@ import Play from "./components/Play";
 /* TODO: /profile -> /profile:username
 use find to search all pages and correct */
 const App = () => {
+  const [ token, setToken ] = useState(``);
 
   return (
     <>
@@ -23,7 +25,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
         <Route path="/profile" element={<Profile />} />
         <Route peth="/play" element={<Play />} />
       </Routes>
