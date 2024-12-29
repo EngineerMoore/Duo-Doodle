@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Play from "./components/Play";
 
+/* TODO: /profile -> /profile:username
+use find to search all pages and correct */
 const App = () => {
 
   return (
