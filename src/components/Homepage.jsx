@@ -2,6 +2,8 @@ const Homepage = () => {
   return (
     <>
       <h2>Welcome to Duo-Doodle!</h2>
+      {/* TODO: on click...logged in: navigate to play page,
+      not logged in, navigate to login page */}
       <button>Play Game</button>
 
       <h3>Artist</h3>
