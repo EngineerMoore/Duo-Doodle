@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
   const [firstName, setFirstName ] = useState(``);
@@ -83,6 +83,7 @@ const Register = () => {
         <button>Sign Up</button>
       </form>
       <p>{registerErr}</p>
+      <Link to="/login">Already have an account? Log in</Link>
     </>
   )
 }
