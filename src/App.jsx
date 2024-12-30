@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import Homepage from "./components/Homepage"
 import Register from "./components/Register";

@@ -1,5 +1,5 @@
 import{ useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = ({ token, setToken }) => {
   const [ email, setEmail ] = useState(``);
@@ -48,6 +48,7 @@ const Login = ({ token, setToken }) => {
         <button>Log In</button>
         <p>{loginErr}</p>
       </form>
+      <Link to="/register">Don't have an account? Create an Account</Link>
     </>
   )
 }
