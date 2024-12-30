@@ -23,7 +23,7 @@ const App = () => {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage token={token} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
         <Route path="/profile" element={<Profile />} />

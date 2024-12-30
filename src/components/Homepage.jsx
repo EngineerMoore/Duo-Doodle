@@ -1,10 +1,16 @@
-const Homepage = () => {
+import { useNavigate } from "react-router";
+
+const Homepage = ({ token }) => {
+  const navigate = useNavigate();
+
+  const play = () => {
+    token? navigate("/play") : navigate("/login");
+  }
+
   return (
     <>
       <h2>Welcome to Duo-Doodle!</h2>
-      {/* TODO: on click...logged in: navigate to play page,
-      not logged in, navigate to login page */}
-      <button>Play Game</button>
+      <button onClick={play}>Play Game</button>
 
       <h3>Artist</h3>
       <p>
