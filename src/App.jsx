@@ -1,18 +1,27 @@
 import { Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { socket } from "./socket";
 import Homepage from "./components/Homepage"
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Play from "./components/Play";
-import Artist from "./components/Artist";
-import Guess from "./components/Guess";
 import Results from "./components/Results";
 
 /* TODO: /profile -> /profile:username
 use find to search all pages and correct */
 const App = () => {
   const [ token, setToken ] = useState(``);
+
+  useEffect(() => {
+    socket.on(`connect`);
+    socket.on(`disconnect`);
+
+    return () => {
+      socket.off(`connect`);
+      socket.off(`disconnect`);
+    }
+  })
 
   return (
     <>
@@ -30,8 +39,6 @@ const App = () => {
         <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/play" element={<Play />} />
-        <Route path="/artist" element={<Artist />} />
-        <Route path="/guess" element={<Guess />} />
         <Route path="/results" element={<Results />} />
       </Routes>
       

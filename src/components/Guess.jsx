@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import io from "socket.io-client";
 // import "./../styles/GuesserPage.css"; 
 
-// const socket = io("http://localhost:3000");
+
 
 const Guess = () => {
   const canvasRef = useRef(null);
@@ -11,6 +10,7 @@ const Guess = () => {
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState(""); 
   const [timer, setTimer] = useState(40); 
+  const [drawing, setDrawing ] = useState();
   const navigate = useNavigate();
 
   // useEffect(() => {

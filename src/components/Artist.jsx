@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import Canvas from "./Canvas";
+import DrawTools from "./DrawTools";
 // import "./../styles/DrawingSubmission.css";
 
-const Artist = () => {
+const Artist = ({ canvasRef, ctxRef, selectedTool, fillColorChecked, brushWidth, renderColor, setRenderColor, setBrushWidth, setSelectedTool, setFillColorChecked  }) => {
   const Ref = useRef(null);
   const [timer, setTimer] = useState(`2:00`);
 
@@ -44,7 +45,27 @@ const Artist = () => {
       <div className="drawing-container">
         <h1>Your Turn to Draw!</h1>
         <h2>Topic: Cat</h2>
-        <Canvas />
+        <section className="draw-feature">
+          <div className="container">
+            <DrawTools
+              selectedTool={ selectedTool }
+              setSelectedTool={ setSelectedTool }
+              setFillColorChecked={ setFillColorChecked }
+              setBrushWidth={ setBrushWidth }
+              setRenderColor={ setRenderColor }
+              ctxRef={ ctxRef}
+              canvasRef={ canvasRef}
+            />
+            <Canvas
+              selectedTool={ selectedTool }
+              fillColorChecked={ fillColorChecked }
+              brushWidth={ brushWidth }
+              renderColor={ renderColor }
+              ctxRef={ ctxRef }
+              canvasRef={ canvasRef }
+            />
+          </div>
+        </section>
         <p className="timer">{timer}</p>
       </div>
     </div>
