@@ -63,6 +63,11 @@ const Canvas = ({ canvasRef, ctxRef, selectedTool, fillColorChecked, brushWidth,
     const context = canvas.getContext("2d");
     ctxRef.current = context;
 
+/*     const connect = () => {
+      socket.connect();
+      console.log(`connected`);
+    } */
+    
     const handleMouseDown = (e) => startDrawing(context, e, canvas);
     const handleMouseMove = (e) => draw(context, e);
     const handleMouseUp = () => isDrawing = false;

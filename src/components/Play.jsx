@@ -25,7 +25,14 @@ const Play = () => {
               brushWidth={ brushWidth }
               renderColor={ renderColor }
       />
-      <Guess />
+      <Guess 
+          selectedTool={ selectedTool }
+          fillColorChecked={ fillColorChecked }
+          brushWidth={ brushWidth }
+          renderColor={ renderColor }
+          ctxRef={ ctxRef }
+          canvasRef={ canvasRef }
+      />
 
     </>
   )

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Canvas from "./Canvas";
 // import "./../styles/GuesserPage.css"; 
 
 
 
-const Guess = () => {
+const Guess = ({ selectedTool, fillColorChecked, brushWidth, renderColor, ctxRef }) => {
   const canvasRef = useRef(null);
   const [guess, setGuess] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState([]);
@@ -67,7 +68,15 @@ const Guess = () => {
     <div className="holographic-background">
       <div className="guesser-container">
         <h1>Guess the Drawing</h1>
-        <canvas ref={canvasRef} width={500} height={400} style={{ border: "1px solid black" }}></canvas>
+        {/* <canvas ref={canvasRef} width={500} height={400} style={{ border: "1px solid black" }}></canvas> */}
+        <Canvas
+          selectedTool={ selectedTool }
+          fillColorChecked={ fillColorChecked }
+          brushWidth={ brushWidth }
+          renderColor={ renderColor }
+          ctxRef={ ctxRef }
+          canvasRef={ canvasRef }
+        />
         <p>Time Remaining: {timer} seconds</p>
         <div>
           <input
