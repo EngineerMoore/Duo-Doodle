@@ -13,24 +13,24 @@ use find to search all pages and correct */
 const App = () => {
   const [ token, setToken ] = useState(``);
 
-  useEffect(() => {
-    socket.on(`connect`);
-    socket.on(`disconnect`);
+  // useEffect(() => {
+  //   socket.on(`connection`);
+  //   socket.on(`disconnect`);
 
-    return () => {
-      socket.off(`connect`);
-      socket.off(`disconnect`);
-    }
-  })
+  //   return () => {
+  //     socket.off(`connect`);
+  //     socket.off(`disconnect`);
+  //   }
+  // })
 
   return (
     <>
       <header>
-        <Link to="/"><h1>Duo-Doodle</h1></Link>
-        <nav>
-          <Link to="/register">Create An Account</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/profile">Profile</Link>
+        <Link to="/" className="navigation-heading"><h1 className="font-effect-shadow-multiple">Duo-Doodle</h1></Link>
+        <nav className="navigation-flex">
+          <Link to="/register" className="nav-link">Create An Account</Link>
+          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/profile" className="nav-link">Profile</Link>
         </nav>
       </header>
       <Routes>

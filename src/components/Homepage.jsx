@@ -8,7 +8,7 @@ const Homepage = ({ token }) => {
   }
 
   return (
-    <>
+    <div className="homepage">
       <h2>Welcome to Duo-Doodle!</h2>
       <button onClick={play}>Play Game</button>
 
@@ -32,7 +32,7 @@ const Homepage = ({ token }) => {
       {/*TODO: add img link */}
       <img alt="gif of user submitting their guess"/>
 
-      </>
+      </div>
   )
 }
 export default Homepage
