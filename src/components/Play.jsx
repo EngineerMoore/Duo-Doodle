@@ -21,25 +21,19 @@ const Play = () => {
 
   return (
     <>
-                  <Canvas
-              selectedTool={ selectedTool }
-              fillColorChecked={ fillColorChecked }
-              brushWidth={ brushWidth }
-              renderColor={ renderColor }
-              ctxRef={ ctxRef }
-              canvasRef={ canvasRef }
-            />
+      <Canvas
+        selectedTool={ selectedTool }
+        fillColorChecked={ fillColorChecked }
+        brushWidth={ brushWidth }
+        renderColor={ renderColor }
+        ctxRef={ ctxRef }
+        canvasRef={ canvasRef }
+      />
       <Artist
-              // selectedTool={ selectedTool }
-              setSelectedTool={ setSelectedTool }
-              setFillColorChecked={ setFillColorChecked }
-              setBrushWidth={ setBrushWidth }
-              setRenderColor={ setRenderColor }
-              // ctxRef={ ctxRef }
-              // canvasRef={ canvasRef }
-              // fillColorChecked={ fillColorChecked }
-              // brushWidth={ brushWidth }
-              // renderColor={ renderColor }
+        setSelectedTool={ setSelectedTool }
+        setFillColorChecked={ setFillColorChecked }
+        setBrushWidth={ setBrushWidth }
+        setRenderColor={ setRenderColor }
       />
       <Guess 
       />
