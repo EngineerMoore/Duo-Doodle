@@ -69,14 +69,6 @@ const Guess = ({ selectedTool, fillColorChecked, brushWidth, renderColor, ctxRef
       <div className="guesser-container">
         <h1>Guess the Drawing</h1>
         {/* <canvas ref={canvasRef} width={500} height={400} style={{ border: "1px solid black" }}></canvas> */}
-        <Canvas
-          selectedTool={ selectedTool }
-          fillColorChecked={ fillColorChecked }
-          brushWidth={ brushWidth }
-          renderColor={ renderColor }
-          ctxRef={ ctxRef }
-          canvasRef={ canvasRef }
-        />
         <p>Time Remaining: {timer} seconds</p>
         <div>
           <input
