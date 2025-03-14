@@ -13,6 +13,15 @@ const io = new Server(server, {
   },
 });
 
+io.on('connection', (socket) => {
+  console.log('Connected');
+  socket.join('game room');
+  // socket.emit('connection', )
+  socket.on('draw', data => {
+    console.log(data.e)
+    io.emit('draw', data);
+  });
+});
 
 
 app.use(morgan);
@@ -24,6 +33,6 @@ app.get(`/`, (req, res) => {
 
 io.listen(PORT);
 
-app.listen(PORT, () => {
-  console.log(`Duo-Doodle is now listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Duo-Doodle is now listening on port ${PORT}`);
+// });
