@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { socket } from "../socket";
 
 
@@ -18,6 +18,21 @@ const Canvas = ({
   const [snapshot, setSnapshot] = useState();
   const [isDrawing, setIsDrawing] = useState(false);
 
+  const renderColorRef = useRef(renderColor);
+  const brushWidthRef = useRef(brushWidth);
+  const fillColorCheckedRef = useRef(fillColorChecked);
+  
+  useEffect(() => {
+    renderColorRef.current = renderColor;
+  }, [renderColor]);
+  
+  useEffect(() => {
+    fillColorCheckedRef.current = fillColorChecked;
+  }, [fillColorChecked]);
+  
+  useEffect(() => {
+    brushWidthRef.current = brushWidth;
+  }, [brushWidth]);
   
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,58 +61,86 @@ const Canvas = ({
       socket.emit('start-drawing', startData);
     }
   
-    const drawRect = (e) => {
-      const width = e.offsetX - prevMouseX;
-      const height = e.offsetY - prevMouseY;
-      if (fillColorChecked) {
+    const drawRect = ({offsetX, offsetY}) => {
+      const width = offsetX - prevMouseX;
+      const height = offsetY - prevMouseY;
+      context.lineWidth = brushWidthRef.current;
+      if (fillColorCheckedRef.current) {
+        context.fillStyle = renderColorRef.current;
         return context.fillRect(prevMouseX, prevMouseY, width, height);
       }
+      context.strokeStyle = renderColorRef.current;
       return context.strokeRect(prevMouseX, prevMouseY, width, height);
     }
 
-    const drawCircle = (e) => {
+    const drawCircle = ({offsetX, offsetY}) => {
       context.beginPath();
-      const radius = Math.sqrt(Math.pow(prevMouseX - e.offsetX, 2) + Math.pow(prevMouseY - e.offsetY, 2));
+      const radius = Math.sqrt(Math.pow(prevMouseX - offsetX, 2) + Math.pow(prevMouseY - offsetY, 2));
       context.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
-      return fillColorChecked ? context.fill() : context.stroke();
+      context.lineWidth = brushWidthRef.current;
+      if (fillColorCheckedRef.current) {
+        context.fillStyle = renderColorRef.current;
+        return context.fill();
+      }
+      context.strokeStyle = renderColorRef.current;
+      return context.stroke();
     }
 
-    const drawTriangle = (e) => {
+    const drawTriangle = ({offsetX, offsetY}) => {
       context.beginPath();
       context.moveTo(prevMouseX, prevMouseY);
-      context.lineTo(e.offsetX, e.offsetY);
-      context.lineTo(prevMouseX * 2 - e.offsetX, e.offsetY);
+      context.lineTo(offsetX, offsetY);
+      context.lineTo(prevMouseX * 2 - offsetX, offsetY);
       context.closePath();
-      context.stroke();
-      fillColorChecked ? context.fill() : context.stroke();
+      context.lineWidth = brushWidthRef.current
+      if (fillColorCheckedRef.current) {
+        context.fillStyle = renderColorRef.current;
+        context.fill();
+      } else {
+        context.strokeStyle = renderColorRef.current;
+        context.stroke();
+      }
     }
 
     
     socket.on('start-drawing', data => {
+      if (data.tool !== 'brush' && data.tool !== 'eraser') {
+        const snapshotData = context.getImageData(0, 0, canvas.width, canvas.height);
+        setSnapshot(snapshotData);
+      }
+
       setSelectedTool(data.tool);
       setRenderColor(data.color);
+      renderColorRef.current = data.color;
       setFillColorChecked(data.fill);
+      fillColorCheckedRef.current = data.fill;
       setBrushWidth(data.brushWidth);
+      brushWidthRef.current = data.brushWidth;
       setPrevMouseX(data.prevMouse.X);
       setPrevMouseY(data.prevMouse.Y);
-      context.beginPath()
-    })
+      context.beginPath();
+    });
 
     socket.on('drawing', (data) => {
       if (selectedTool === "brush" || selectedTool === "eraser") {
-        context.lineWidth = brushWidth;
-        context.strokeStyle = selectedTool === "eraser" ? "#fff" : renderColor;
+        context.lineWidth = brushWidthRef.current;
+        context.strokeStyle = selectedTool === "eraser" ? "#fff" : renderColorRef.current;
         context.lineTo(data.offsetX, data.offsetY);
         context.stroke();
-      } else if (selectedTool === "rectangle") {
-        drawRect(data);
-      } else if (selectedTool === "circle") {
-        drawCircle(data);
       } else {
-        drawTriangle(data);
+        if (snapshot) {
+          context.putImageData(snapshot, 0, 0);
+        }
+
+          if (selectedTool === "rectangle") {
+          drawRect(data);
+        } else if (selectedTool === "circle") {
+          drawCircle(data);
+        } else {
+          drawTriangle(data);
+        }
       }
     });
-
 
     const draw = (e) => {
       if (!isDrawing) return;
@@ -117,7 +160,6 @@ const Canvas = ({
       emitDrawing({ offsetX: e.offsetX, offsetY: e.offsetY });  
     };
 
-
     const throttle = (callback, delay) => {
       let previousCall = new Date().getTime();
       return function() {
@@ -130,7 +172,6 @@ const Canvas = ({
       };
     };  
       
-
     const emitDrawing = throttle((position) => {
       socket.emit('drawing', position);
     }, 20);
@@ -151,7 +192,7 @@ const Canvas = ({
       socket.off(`connection`);
       socket.off(`start-drawing`);
       socket.off(`drawing`);
-    };
+    }
   });
 
   return (
