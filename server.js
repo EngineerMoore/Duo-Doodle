@@ -15,11 +15,11 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   console.log('Connected');
-  socket.join('game room');
-  // socket.emit('connection', )
-  socket.on('draw', data => {
-    console.log(data.e)
-    io.emit('draw', data);
+  socket.on('start-drawing', (data) => {
+    socket.broadcast.emit('start-drawing', data);
+  });
+  socket.on('drawing', (position) => {
+    socket.broadcast.emit('drawing', position);
   });
 });
 
@@ -32,7 +32,3 @@ app.get(`/`, (req, res) => {
 
 
 io.listen(PORT);
-
-// app.listen(PORT, () => {
-//   console.log(`Duo-Doodle is now listening on port ${PORT}`);
-// });

@@ -4,9 +4,10 @@ import { GoCircle } from "react-icons/go";
 import { IoTriangleOutline } from "react-icons/io5";
 import { BsBrush } from "react-icons/bs";
 import { BsEraser } from "react-icons/bs";
+import { socket } from "../socket";
 
 
-const DrawTools = ({ canvasRef,ctxRef, selectedTool,setSelectedTool,setFillColorChecked,setBrushWidth,setRenderColor }) => {
+const DrawTools = ({ canvasRef,ctxRef, selectedTool, setSelectedTool,setFillColorChecked,setBrushWidth,setRenderColor }) => {
   const [brushColor, setBrushColor] = useState(`black`);
   const toolSelection = (tool) => {
     setSelectedTool(tool);
@@ -31,9 +32,11 @@ const DrawTools = ({ canvasRef,ctxRef, selectedTool,setSelectedTool,setFillColor
   const showColor = (e) => {
     if (e.target.value){
       e.target.parentElement.style.background = e.target.value;
+      socket.emit('color', e.target.value);
       return setRenderColor(e.target.value);
     }
     setRenderColor(window.getComputedStyle(e.target).getPropertyValue(`background-color`));
+    socket.emit('color', window.getComputedStyle(e.target).getPropertyValue(`background-color`));
   }
 
   return (

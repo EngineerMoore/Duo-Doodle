@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import DrawTools from "./DrawTools";
 // import "./../styles/DrawingSubmission.css";
 
-const Artist = ({ canvasRef, ctxRef, selectedTool, setRenderColor, setBrushWidth, setSelectedTool, setFillColorChecked  }) => {
+const Artist = ({ canvasRef, ctxRef, selectedTool, renderColor, setRenderColor, setBrushWidth, setSelectedTool, setFillColorChecked  }) => {
   const Ref = useRef(null);
   const [timer, setTimer] = useState(`2:00`);
 
