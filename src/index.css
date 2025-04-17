@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Frijole&display=swap
+@import url(https://fonts.googleapis.com/css2?family=Frijole&family=Poetsen+One&display=swap
 );
 @import url(https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple);
 
@@ -112,6 +112,17 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+#prompt {
+text-align: center;
+margin-bottom: 5px;
+}
+#topic {
+text-align: center;
+font-family: 'Poetsen One';
+font-size: xx-large;
+margin: 5px;
+color: rgb(168, 195, 234);
+}
 .play-container {
   display: flex;
   flex-direction: row-reverse;
@@ -120,7 +131,7 @@ button:focus-visible {
   width: 70%;
   border-radius: 10px;
   box-shadow: 0 0 20px 8px #77648e;
-  margin: 50px auto 50px;
+  margin: 20px auto 50px;
   align-content: center;
   min-width: 300px;
   background-color:  rgba(255, 255, 255, .5);

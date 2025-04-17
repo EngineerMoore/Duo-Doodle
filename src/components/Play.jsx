@@ -71,12 +71,12 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
 
   return (
     <>
-      <h1>{
+      <h1 id = 'prompt'>{
         player === 'artist' ?
         'Your turn to draw!':
         'Guess the drawing' 
       }</h1>
-      <h2>{
+      <h2 id = 'topic'>{
         player === 'artist' ?
         'Topic: ' + correctAnswer:
         '' 
