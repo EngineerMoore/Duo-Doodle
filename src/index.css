@@ -9,6 +9,7 @@ h1 {
   margin: 15px 10px 20px;
   font-size: 2.5em;
 }
+
 h2 {
   font-family: 'Poetsen One';
   font-size: xx-large;
@@ -18,6 +19,7 @@ h3 {
   font-family: 'Poetsen One';
   font-size: large;
 }
+
 .navigation-flex {
   display: flex;
   gap: 200px;
@@ -25,12 +27,13 @@ h3 {
   border-bottom: 5px dotted #534ad4;
   padding: 10px 15px;
 }
+
 .nav-link {
   color: rgb(221, 240, 253);
   font-weight: 600;
 }
+
 body {
-  /* margin: 0; */
   position: relative;
   width: 100%;
   height: 100%;
@@ -38,6 +41,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
 .homepage {
   border-radius: 10px;
   box-shadow: 0 0 20px 8px #77648e;
@@ -57,6 +61,7 @@ body {
 .homepage p {
   color:#8912b0
 }
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -73,6 +78,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -89,9 +95,11 @@ button {
   box-shadow: 5px 5px 10px 1px rgb(107, 6, 231);
   color:#fbecff;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto #241b7b;;
@@ -101,12 +109,14 @@ button:focus-visible {
 text-align: center;
 margin-bottom: 5px;
 }
+
 #topic {
 text-align: center;
 font-size: xx-large;
 margin: 5px;
 color: rgb(168, 195, 234);
 }
+
 .play-container {
   display: flex;
   flex-direction: row-reverse;
@@ -121,6 +131,7 @@ color: rgb(168, 195, 234);
   background-color:  rgba(255, 255, 255, .5);
   padding: 20px 0;
 }
+
 #timer-alert {
   color:red
 }
@@ -129,44 +140,54 @@ color: rgb(168, 195, 234);
   width: 210px;
   padding: 15px 22px 0;
 }
+
 .tools-board .row{
   margin-bottom: 20px;
 }
+
 .row .options{
   list-style: none;
   margin: 10px 0 0 0;
 }
+
 .row .options .option{
   display: flex;
   cursor: pointer;
   align-items: center;
   margin-bottom: 3px;
 }
+
 .option:is(:hover, .active) .icon{
   filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
 }
+
 .option :where(span, label){
   padding-left: 7px;
   cursor: pointer;
 }
+
 .option:is(:hover, .active) :where(span, label){
   color:cornflowerblue;
 }
+
 .option #fill-color{
   cursor: pointer;
   height: 14px;
   width: 90px;
 }
+
 .option #size-slider{
   width: 80%;
   height: 5px;
   margin-top: 10px;
 }
+
 .colors .options{
   display: flex;
   justify-content: space-around;
   padding-left: 0;
 }
+
 .colors .option{
   height: 20px;
   width: 20px;
@@ -174,22 +195,28 @@ color: rgb(168, 195, 234);
   margin-top: 3px;
   position: relative;
 }
+
 .colors .option:nth-child(1){
   background-color: white;
   border: 1.5px solid gray;
 }
+
 .colors .option:nth-child(2){
   background-color: black;
 }
+
 .colors .option:nth-child(3){
   background-color: red;
 }
+
 .colors .option:nth-child(4){
   background-color: rgb(4, 133, 4);
 }
+
 .colors .option:nth-child(5){
   background-color: blue;
 }
+
 .colors .option.selected::before{
   position: absolute;
   content:"";
@@ -202,32 +229,39 @@ color: rgb(168, 195, 234);
   border: 2px solid white;
   transform: translate(-50%, -50%);
 }
+
 .colors .option:first-child.selected::before{
   background-color:rgb(230, 226, 226);
 }
+
 .option #color-picker{
   opacity: 0;
   cursor: pointer;
 }
+
 .buttons button{
   width: 75%;
   padding: 8px 0;
   font-size: 0.9rem;
   margin: 0 0 20px 7%;
 }
+
 .buttons button:hover{
   border-color: #646cff;
 }
+
 .buttons .clear-canvas{
   color: #3826dc;
   border: 1px solid grey;
   transition: all 0.3s ease;
   background-color: rgb(155, 189, 238);
 }
+
 .clear-canvas:hover{
   color: white;
   background-color: lightsteelblue;
 }
+
 .buttons .save-img{
   border: 1px solid #3201a2;
 }
