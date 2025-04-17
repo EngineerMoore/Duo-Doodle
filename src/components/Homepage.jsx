@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router";
+import { socket } from "../socket"
 
 const Homepage = ({ token }) => {
   const navigate = useNavigate();
 
   const play = () => {
-    token? navigate("/play") : navigate("/login");
+    // token? navigate("/play") : navigate("/login");
+    socket.emit('newPlayer');
+    navigate("/play");
   }
 
   return (
