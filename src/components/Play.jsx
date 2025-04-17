@@ -81,6 +81,7 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
         'Topic: ' + correctAnswer:
         '' 
       }</h2>
+      <div className="play-container">
       <Canvas
         selectedTool={ selectedTool }
         fillColorChecked={ fillColorChecked }
@@ -104,6 +105,7 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
         /> :
         <Guess />
       }
+      </div>
       <p className="timer">{timer}</p>
 
     </>
