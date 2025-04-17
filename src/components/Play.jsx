@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { socket } from "../socket";
-import Artist from "./Artist";
+import DrawTools from "./DrawTools";
 import Guess from "./Guess";
 import Canvas from "./Canvas";
 
@@ -72,14 +72,14 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
   return (
     <>
       <h1>{
-      player === 'artist' ?
-      'Your turn to draw!':
-      'Guess the drawing' 
+        player === 'artist' ?
+        'Your turn to draw!':
+        'Guess the drawing' 
       }</h1>
       <h2>{
-      player === 'artist' ?
-      'Topic: ' + correctAnswer:
-      '' 
+        player === 'artist' ?
+        'Topic: ' + correctAnswer:
+        '' 
       }</h2>
       <Canvas
         selectedTool={ selectedTool }
@@ -93,13 +93,16 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
         setRenderColor={ setRenderColor }
       />
       { player === 'artist' ?      
-      <Artist
-        setSelectedTool={ setSelectedTool }
-        setFillColorChecked={ setFillColorChecked }
-        setBrushWidth={ setBrushWidth }
-        setRenderColor={ setRenderColor }
-      /> :
-      <Guess />
+        <DrawTools
+          selectedTool={ selectedTool }
+          setSelectedTool={ setSelectedTool }
+          setFillColorChecked={ setFillColorChecked }
+          setBrushWidth={ setBrushWidth }
+          setRenderColor={ setRenderColor }
+          // ctxRef={ ctxRef }
+          canvasRef={ canvasRef }
+        /> :
+        <Guess />
       }
       <p className="timer">{timer}</p>
 
