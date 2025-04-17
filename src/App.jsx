@@ -12,6 +12,7 @@ import Results from "./components/Results";
 use find to search all pages and correct */
 const App = () => {
   const [ token, setToken ] = useState(``);
+  const [correctAnswer, setCorrectAnswer] = useState(`Cat`); 
 
   // useEffect(() => {
   //   socket.on(`connection`);
@@ -38,8 +39,8 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/play" element={<Play />} />
-        <Route path="/results" element={<Results />} />
+        <Route path="/play" element={<Play setCorrectAnswer={setCorrectAnswer} correctAnswer={correctAnswer} />} />
+        <Route path="/results" element={<Results correctAnswer={correctAnswer}/>} />
       </Routes>
       
     </>
