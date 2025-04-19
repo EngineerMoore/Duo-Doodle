@@ -4,6 +4,7 @@ import { socket } from "../socket";
 import DrawTools from "./DrawTools";
 import Guess from "./Guess";
 import Canvas from "./Canvas";
+import { faker } from "@faker-js/faker"
 
 const Play = ({correctAnswer, setCorrectAnswer}) => {
   const canvasRef = useRef(null);
@@ -32,6 +33,29 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
   }, [])
 
   useEffect(() => {
+    const generateTopic = () => {
+      const topics = [
+        'animal.type',
+        'commerce.department',
+        'commerce.product',
+        'commerce.productMaterial',
+        'food.fruit',
+        'food.vegetable',
+        'location.continent',
+        'location.country',
+        'person.sex',
+        'vehicle.manufacturer',
+        'vehicle.type',
+        'word.noun',
+      ]
+
+      const topicIdx = Math.floor(Math.random() * topics.length);
+      const fakerString = 'faker.' + topics[topicIdx] +'()';
+      setCorrectAnswer(eval(fakerString));
+    }
+
+    generateTopic();
+
     let timeRemaining = 360;
 
     const timeDecrement = () => {
