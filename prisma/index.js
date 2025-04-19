@@ -1,7 +1,8 @@
-const bcrypt = require(`bcrypt`);
-const { PrismaClient } = require(`@prisma/client`);
+import bcrypt from "bcrypt";
+import { PrismaClient } from "../src/generated/prisma/client/index.js";
+import { withAccelerate } from '@prisma/extension-accelerate';
 
-const prisma = new PrismaClient().$extends({
+const prisma = new PrismaClient().$extends(withAccelerate()).$extends({
   model: {
     user: {
       async signUp(username, email, firstName, lastName, password) {
@@ -21,11 +22,11 @@ const prisma = new PrismaClient().$extends({
       async login(email, password) {
         const user = await prisma.user.findUniqueOrThrow({ where: { email }, });
         const valid = await bcrypt.compare(password, user.password);
-        if (!valid) throw Error("Invalid password");
+        if (!valid) throw Error(`Invalid password`);
         return user;
       },
     },
   },
 });
 
-module.exports = prisma;
+export default prisma
