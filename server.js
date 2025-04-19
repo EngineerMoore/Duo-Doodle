@@ -41,40 +41,40 @@ const playersInfo = {};
 
 
 io.on('connection', async (socket) => {
-  let roomId = null;
-  socket.on('newPlayer', () => {
-    const findOpening = (i, role) => {
-      if (!rooms[i][role]) {
-        rooms[i][role] = socket.id;
-        socket.emit(role);
-        roomId = '' + i;
-        playersInfo[socket.id] = { room: roomId, role: role, }
-        return true;
-      }
-    }
+  // let roomId = null;
+  // socket.on('newPlayer', () => {
+  //   const findOpening = (i, role) => {
+  //     if (!rooms[i][role]) {
+  //       rooms[i][role] = socket.id;
+  //       socket.emit(role);
+  //       roomId = '' + i;
+  //       playersInfo[socket.id] = { room: roomId, role: role, }
+  //       return true;
+  //     }
+  //   }
 
-    for (let i = 0; i < rooms.length; i++){
-      if (findOpening(i, 'artist')) return;
-      if (findOpening(i, 'guesser')) return;
-    }
+  //   for (let i = 0; i < rooms.length; i++){
+  //     if (findOpening(i, 'artist')) return;
+  //     if (findOpening(i, 'guesser')) return;
+  //   }
     
-    if (rooms.length === 0 || Object.keys(rooms[rooms.length - 1]).length === 2) {
-      roomId = '' + (rooms.length);
+  //   if (rooms.length === 0 || Object.keys(rooms[rooms.length - 1]).length === 2) {
+  //     roomId = '' + (rooms.length);
 
-      const role = Math.ceil(Math.random() * 2);
-      if (role === 1) {
-        rooms.push({artist: socket.id});
-        playersInfo[socket.id] = { room: roomId, role: 'artist', }
-        socket.emit('artist');
-       } else {
-        rooms.push({guesser: socket.id});
-        playersInfo[socket.id] = { room: roomId, role: 'guesser', }
-        socket.emit('guesser');
-       }
-    }
+  //     const role = Math.ceil(Math.random() * 2);
+  //     if (role === 1) {
+  //       rooms.push({artist: socket.id});
+  //       playersInfo[socket.id] = { room: roomId, role: 'artist', }
+  //       socket.emit('artist');
+  //      } else {
+  //       rooms.push({guesser: socket.id});
+  //       playersInfo[socket.id] = { room: roomId, role: 'guesser', }
+  //       socket.emit('guesser');
+  //      }
+  //   }
 
-  });
-  await socket.join(0/* , console.log('joined: ' + roomId ) */);
+  // });
+  socket.join(0/* , console.log('joined: ' + roomId ) */);
 
 
   socket.on('start-drawing', (data) => {
@@ -84,16 +84,23 @@ io.on('connection', async (socket) => {
     socket.broadcast.to(0).emit('drawing', position);
   });
 
+  socket.on('correct', (answer) => {
+    console.log(answer);
+    socket.broadcast.to(0).emit('correct', answer);
+  })
 
-  socket.on('disconnect', (player) => {
-    if (!playersInfo[socket.id]) return;
-    const room = playersInfo[socket.id].room;
-    const otherRole = playersInfo[socket.id].role === 'artist' ? 'guesser' : 'artist';
-    const otherPlayer = rooms[room][otherRole];
-    delete rooms[room];
-    delete playersInfo[socket.id];
-    if (otherPlayer) delete playersInfo[otherPlayer];
-  });
+  socket.on('wrong', (answer) => {
+    socket.broadcast.to(0).emit(answer);
+  })
+  // socket.on('disconnect', (player) => {
+  //   if (!playersInfo[socket.id]) return;
+  //   const room = playersInfo[socket.id].room;
+  //   const otherRole = playersInfo[socket.id].role === 'artist' ? 'guesser' : 'artist';
+  //   const otherPlayer = rooms[room][otherRole];
+  //   delete rooms[room];
+  //   delete playersInfo[socket.id];
+  //   if (otherPlayer) delete playersInfo[otherPlayer];
+  // });
   // console.log(rooms); 
 
 });

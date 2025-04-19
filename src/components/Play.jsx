@@ -26,9 +26,14 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
       setPlayer('guesser')
     })
 
+    socket.on('correct', answer => {
+      setCorrectAnswer(answer);
+    })
+
     return () => {
       socket.off('artist');
       socket.off('guesser');
+      socket.off('correct')
       }
   }, [])
 
@@ -48,15 +53,18 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
         'vehicle.type',
         'word.noun',
       ]
-
+      const topic = document.querySelector('#topic')
       const topicIdx = Math.floor(Math.random() * topics.length);
       const fakerString = 'faker.' + topics[topicIdx] +'()';
-      setCorrectAnswer(eval(fakerString));
+      topic.innerText ='' + eval(fakerString);
+      setCorrectAnswer(topic.innerText)
     }
 
-    generateTopic();
+    if (player === 'artist') generateTopic();
 
-    let timeRemaining = 360;
+    socket.emit('correct', document.querySelector('#topic').innerText);
+
+    let timeRemaining = 5;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
@@ -100,7 +108,7 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
         'Your turn to draw!':
         'Guess the drawing' 
       }</h1>
-      <h2 id = 'topic'>{
+      <h2 id = 'topic' >{
         player === 'artist' ?
         'Topic: ' + correctAnswer:
         '' 
@@ -117,7 +125,7 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
         setBrushWidth={ setBrushWidth }
         setRenderColor={ setRenderColor }
       />
-      { player === 'artist' ?      
+      {/* { player === 'artist' ?       */}
         <DrawTools
           selectedTool={ selectedTool }
           setSelectedTool={ setSelectedTool }
@@ -128,7 +136,7 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
           canvasRef={ canvasRef }
         /> :
         <Guess />
-      }
+      {/* } */}
       </div>
       <p className="timer">{timer}</p>
 
