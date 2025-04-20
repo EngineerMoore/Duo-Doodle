@@ -6,7 +6,7 @@ import Guess from "./Guess";
 import Canvas from "./Canvas";
 import { faker } from "@faker-js/faker"
 
-const Play = ({correctAnswer, setCorrectAnswer}) => {
+const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) => {
   const canvasRef = useRef(null);
   const Ref = useRef(null);
   const [selectedTool, setSelectedTool] = useState("brush");
@@ -64,7 +64,7 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
 
     socket.emit('correct', document.querySelector('#topic').innerText);
 
-    let timeRemaining = 5;
+    let timeRemaining = 3600;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
@@ -98,6 +98,11 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
   }, []);
 
   if (timer === '0:00') {
+    // emit 'renderResults'
+      // when 'renderResults' is received on play page
+        // if guesser
+          // emit wrong answers w/ delay to give artist time to make it to results
+        // navigate to results
     navigate("/results")
   };
 
@@ -135,7 +140,7 @@ const Play = ({correctAnswer, setCorrectAnswer}) => {
           // ctxRef={ ctxRef }
           canvasRef={ canvasRef }
         /> :
-        <Guess />
+        <Guess wrongAnswers={ wrongAnswers } setWrongAnswers={ setWrongAnswers } />
       {/* } */}
       </div>
       <p className="timer">{timer}</p>

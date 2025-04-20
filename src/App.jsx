@@ -1,6 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { socket } from "./socket";
 import Homepage from "./components/Homepage"
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -12,17 +11,8 @@ import Results from "./components/Results";
 use find to search all pages and correct */
 const App = () => {
   const [ token, setToken ] = useState(``);
-  const [correctAnswer, setCorrectAnswer] = useState(`Cat`); 
-
-  // useEffect(() => {
-  //   socket.on(`connection`);
-  //   socket.on(`disconnect`);
-
-  //   return () => {
-  //     socket.off(`connect`);
-  //     socket.off(`disconnect`);
-  //   }
-  // })
+  const [correctAnswer, setCorrectAnswer] = useState(`Cat`);
+  const [wrongAnswers, setWrongAnswers] = useState([]);
 
   return (
     <>
@@ -39,8 +29,14 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/play" element={<Play setCorrectAnswer={setCorrectAnswer} correctAnswer={correctAnswer} />} />
-        <Route path="/results" element={<Results correctAnswer={correctAnswer}/>} />
+        <Route path="/play" element={
+          <Play
+            setCorrectAnswer={ setCorrectAnswer }
+            correctAnswer={ correctAnswer }
+            setWrongAnswers={ setWrongAnswers }
+            wrongAnswers={ wrongAnswers }
+          />} />
+        <Route path="/results" element={<Results correctAnswer={ correctAnswer }/>} />
       </Routes>
       
     </>

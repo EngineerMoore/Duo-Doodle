@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const Guess = ({ selectedTool, fillColorChecked, brushWidth, renderColor, ctxRef }) => {
+const Guess = ({ wrongAnswers, setWrongAnswers }) => {
   const [guess, setGuess] = useState("");
-  const [wrongAnswers, setWrongAnswers] = useState([]);
 
-  const guesses = [];
   const handleGuessSubmit = (e) => {
 
     // show characters as guess is placed in input (b4 submit)
@@ -14,15 +12,8 @@ const Guess = ({ selectedTool, fillColorChecked, brushWidth, renderColor, ctxRef
         // show guess on screen
       // else:
         // emit 'renderResults' (will trigger wrong answers emission)
-    guesses.push(guess);
-    const guessUL = document.querySelector('.guesses');
-    const li = document.createElement('li');
-    li.innerText = guess
-    guessUL.append(li);
+    setWrongAnswers([...wrongAnswers, guess])
     setGuess('');
-
-    // console.log(guesses);
-    // if (guess.trim() === "") return;
 
     // if (guess.toLowerCase() === correctAnswer.toLowerCase()) {
     //   alert("Correct!");
@@ -43,7 +34,9 @@ const Guess = ({ selectedTool, fillColorChecked, brushWidth, renderColor, ctxRef
             placeholder="Enter your guess"
           />
           <button onClick={(e) => handleGuessSubmit(e)}>Submit Guess</button>
-          <ul className="guesses"><li>Hi</li></ul>
+          <ul className="guesses">{wrongAnswers.map(wrongAnswer => (
+            <li key={wrongAnswer}>{wrongAnswer}</li>
+          ))}</ul>
         </div>
       </div>
     </div>
