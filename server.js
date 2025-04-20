@@ -40,7 +40,7 @@ const rooms = [];
 const playersInfo = {};
 
 
-io.on('connection', async (socket) => {
+io.on('connection', (socket) => {
   // let roomId = null;
   // socket.on('newPlayer', () => {
   //   const findOpening = (i, role) => {
@@ -89,11 +89,15 @@ io.on('connection', async (socket) => {
     socket.broadcast.to(0).emit('correct', answer);
   })
 
-  socket.on('wrong', (answer) => {
-    socket.broadcast.to(0).emit(answer);
+  socket.on('wrong', (answers) => {
+    socket.to(0).emit('wrong', answers);
+  })
+
+  socket.on('renderResults', () => {
+    io.to(0).emit('renderResults');
   })
   // socket.on('disconnect', (player) => {
-  //   if (!playersInfo[socket.id]) return;
+  //   if (!playersInfo[socket.id]) return; 
   //   const room = playersInfo[socket.id].room;
   //   const otherRole = playersInfo[socket.id].role === 'artist' ? 'guesser' : 'artist';
   //   const otherPlayer = rooms[room][otherRole];

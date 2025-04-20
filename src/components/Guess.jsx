@@ -1,26 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+import { socket } from "../socket"
 
-const Guess = ({ wrongAnswers, setWrongAnswers }) => {
+const Guess = ({ wrongAnswers, setWrongAnswers, correctAnswer }) => {
   const [guess, setGuess] = useState("");
 
   const handleGuessSubmit = (e) => {
-
-    // show characters as guess is placed in input (b4 submit)
-    // on submit
-      // if guess doesn't match answer
-        // add to wrong answer array 
-        // show guess on screen
-      // else:
-        // emit 'renderResults' (will trigger wrong answers emission)
-    setWrongAnswers([...wrongAnswers, guess])
-    setGuess('');
-
-    // if (guess.toLowerCase() === correctAnswer.toLowerCase()) {
-    //   alert("Correct!");
-    // } else {
-    //   setWrongAnswers((prev) => [...prev, guess]);
-    // }
-    // setGuess("");
+    const correctGuess = guess.toLowerCase() === correctAnswer.toLowerCase() 
+    if (!correctGuess) {
+      const newAnswersArr = [...wrongAnswers, guess]
+      setWrongAnswers(newAnswersArr)
+      socket.emit('wrong', newAnswersArr)
+      setGuess('');
+    } else {
+      socket.emit('renderResults')
+    }
   };
 
   return (

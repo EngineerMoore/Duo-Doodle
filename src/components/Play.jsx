@@ -30,10 +30,19 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
       setCorrectAnswer(answer);
     })
 
+    const getWrongAnswers = (answers) => {
+      setWrongAnswers(answers);
+    }
+
+    socket.on('renderResults', () => {navigate("/results")});
+    socket.on('wrong', getWrongAnswers);
+
     return () => {
       socket.off('artist');
       socket.off('guesser');
       socket.off('correct')
+      socket.off('renderResults');
+      socket.off('wrong');
       }
   }, [])
 
@@ -64,7 +73,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
 
     socket.emit('correct', document.querySelector('#topic').innerText);
 
-    let timeRemaining = 3600;
+    let timeRemaining = 4;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
@@ -97,13 +106,14 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
     return () => clearInterval(startTimer);
   }, []);
 
+
   if (timer === '0:00') {
     // emit 'renderResults'
+    socket.emit('renderResults');
       // when 'renderResults' is received on play page
         // if guesser
           // emit wrong answers w/ delay to give artist time to make it to results
         // navigate to results
-    navigate("/results")
   };
 
   return (
@@ -140,7 +150,10 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
           // ctxRef={ ctxRef }
           canvasRef={ canvasRef }
         /> :
-        <Guess wrongAnswers={ wrongAnswers } setWrongAnswers={ setWrongAnswers } />
+        <Guess
+          wrongAnswers={ wrongAnswers }
+          setWrongAnswers={ setWrongAnswers }
+          correctAnswer={ correctAnswer }/>
       {/* } */}
       </div>
       <p className="timer">{timer}</p>
