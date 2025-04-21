@@ -62,16 +62,29 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
         'vehicle.type',
         'word.noun',
       ]
-      const topic = document.querySelector('#topic')
+      const fakerMethods = {
+        'animal.type': faker.animal.type,
+        'commerce.department': faker.commerce.department,
+        'commerce.product': faker.commerce.product,
+        'commerce.productMaterial': faker.commerce.productMaterial,
+        'food.fruit': faker.food.fruit,
+        'food.vegetable': faker.food.vegetable,
+        'location.continent': faker.location.continent,
+        'location.country': faker.location.country,
+        'person.sex': faker.person.sex,
+        'vehicle.manufacturer': faker.vehicle.manufacturer,
+        'vehicle.type': faker.vehicle.type,
+        'word.noun': faker.word.noun,
+      };
+
       const topicIdx = Math.floor(Math.random() * topics.length);
-      const fakerString = 'faker.' + topics[topicIdx] +'()';
-      topic.innerText ='' + eval(fakerString);
-      setCorrectAnswer(topic.innerText)
+      const topic = fakerMethods[topics[topicIdx]]();
+      socket.emit('correct', topic)
+      setCorrectAnswer(topic);
     }
 
     if (player === 'artist') generateTopic();
 
-    socket.emit('correct', document.querySelector('#topic').innerText);
 
     let timeRemaining = 4;
 
@@ -140,7 +153,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
         setBrushWidth={ setBrushWidth }
         setRenderColor={ setRenderColor }
       />
-      {/* { player === 'artist' ?       */}
+      { player === 'artist' ?      
         <DrawTools
           selectedTool={ selectedTool }
           setSelectedTool={ setSelectedTool }
@@ -154,7 +167,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
           wrongAnswers={ wrongAnswers }
           setWrongAnswers={ setWrongAnswers }
           correctAnswer={ correctAnswer }/>
-      {/* } */}
+      }
       </div>
       <p className="timer">{timer}</p>
 
