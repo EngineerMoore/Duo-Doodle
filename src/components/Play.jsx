@@ -86,7 +86,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
     if (player === 'artist') generateTopic();
 
 
-    let timeRemaining = 4;
+    let timeRemaining = 15;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
