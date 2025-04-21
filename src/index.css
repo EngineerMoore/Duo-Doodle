@@ -269,3 +269,23 @@ color: rgb(168, 195, 234);
 canvas {
   background-color: white;
 }
+
+.guesser-container {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  justify-items: center;
+}
+
+#guess-input {
+  grid-area: input-submission;
+  margin: 20px;
+  height: 30%;
+}
+
+.guesser-container button {
+ grid-area: input-button;
+}
+
+.guesses {
+  grid-area: guesses;
+}

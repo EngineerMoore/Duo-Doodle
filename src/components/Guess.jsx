@@ -20,7 +20,7 @@ const Guess = ({ wrongAnswers, setWrongAnswers, correctAnswer }) => {
     <div className="holographic-background">
       <div className="guesser-container">
         <div>
-          <input
+          <input id ="guess-input"
             type="text"
             value={guess}
             onChange={(e) => setGuess(e.target.value)}
