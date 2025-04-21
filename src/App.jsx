@@ -36,7 +36,7 @@ const App = () => {
             setWrongAnswers={ setWrongAnswers }
             wrongAnswers={ wrongAnswers }
           />} />
-        <Route path="/results" element={<Results correctAnswer={ correctAnswer }/>} />
+        <Route path="/results" element={<Results correctAnswer={ correctAnswer } wrongAnswers={ wrongAnswers }/>} />
       </Routes>
       
     </>

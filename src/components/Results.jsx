@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 // import "./../styles/ResultsPage.css"; // Add this CSS file for styling
 
-const Results = ({ correctAnswer }) => {
+const Results = ({ correctAnswer, wrongAnswers }) => {
   // const location = useLocation();
   const navigate = useNavigate();
 
@@ -22,9 +22,9 @@ const Results = ({ correctAnswer }) => {
         </p>
         <h2>Wrong Attempts:</h2>
         <ul>
-          {/* {wrongAnswers.map((answer, index) => (
+          {wrongAnswers.map((answer, index) => (
             <li key={index}>{answer}</li>
-          ))} */}
+          ))}
         </ul>
         <button onClick={() => navigate("/play")}>Play Again</button>
       </div>
