@@ -62,7 +62,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('correct', (answer) => {
-    console.log(answer);
     socket.broadcast.to(playersInfo[socket.id].room).emit('correct', answer);
   })
 
