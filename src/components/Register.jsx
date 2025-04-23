@@ -15,7 +15,7 @@ const Register = () => {
     e.preventDefault();
     console.log(`${firstName} ${lastName} + ${username} + ${email} + ${password}`);
     try {
-      const response = await fetch(``, {
+      const response = await fetch(`https://duo-doodle-server.onrender.com/api/signUp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

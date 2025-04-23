@@ -10,7 +10,7 @@ const Login = ({ token, setToken }) => {
   const logIn = async (e) => {
     e.preventDefault();
     try{
-      const response = await fetch(``, {
+      const response = await fetch(`https://duo-doodle-server.onrender.com/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "applicaton/json"
