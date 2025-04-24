@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Homepage from "./components/Homepage"
 import Register from "./components/Register";
 import Login from "./components/Login";
-import Profile from "./components/Profile";
 import Play from "./components/Play";
 import Results from "./components/Results";
 
@@ -21,14 +20,12 @@ const App = () => {
         <nav className="navigation-flex">
           <Link to="/register" className="nav-link">Create An Account</Link>
           <Link to="/login" className="nav-link">Login</Link>
-          <Link to="/profile" className="nav-link">Profile</Link>
         </nav>
       </header>
       <Routes>
         <Route path="/" element={<Homepage token={token} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/play" element={
           <Play
             setCorrectAnswer={ setCorrectAnswer }
