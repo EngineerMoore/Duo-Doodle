@@ -13,7 +13,7 @@ const Login = ({ token, setToken }) => {
       const response = await fetch(`https://duo-doodle-server.onrender.com/api/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "applicaton/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           email: email,
