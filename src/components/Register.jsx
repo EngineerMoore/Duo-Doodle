@@ -13,7 +13,6 @@ const Register = () => {
 
   const createAccount = async (e) => {
     e.preventDefault();
-    console.log(`${firstName} ${lastName} + ${username} + ${email} + ${password}`);
     try {
       const response = await fetch(`https://duo-doodle-server.onrender.com/api/signUp`, {
         method: "POST",
@@ -29,7 +28,6 @@ const Register = () => {
         })
       })
       const result = await response.json();
-      console.log(result);
       setFirstName("");
       setLastName("");
       setUsername("");
