@@ -142,7 +142,7 @@ const DrawTools = ({ canvasRef,ctxRef, selectedTool, setSelectedTool,setFillColo
       </div>
       <div className="row buttons">
         <button className="clear-canvas" onClick={() => clearDrawing()}>Clear Canvas</button>
-        <button className="save-img">Save Drawing</button>
+        <button className="change-topic">Change Topic</button>
       </div>
     </section>
   )
