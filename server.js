@@ -12,7 +12,7 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: { //required so fronted can reach backend
-    origin: process.env.NODE_ENV === "production" ? false : ["http://localhost:5173"],
+    origin: process.env.NODE_ENV === "production" ? ["https://duo-doodle.onrender.com"] : ["http://localhost:5173"],
   },
 });
 
