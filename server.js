@@ -4,11 +4,10 @@ import { Server } from 'socket.io';
 import morgan from 'morgan';
 import cors from 'cors'
 
-const app = express();
+const app = express().use(cors());
 const server = createServer(app);
 const PORT = process.env.PORT || 3000;
 
-server.use(cors());
 
 const io = new Server(server, {
   cors: { //required so fronted can reach backend
