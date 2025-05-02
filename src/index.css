@@ -295,3 +295,54 @@ canvas {
 .guesses {
   grid-area: guesses;
 }
+
+form {
+  color: rgb(107, 6, 231);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 8px #77648e;
+  margin: 20px auto 50px;
+  min-width: 300px;
+  background-color:  rgba(255, 255, 255, .5);
+  padding: 20px 30px 50px;
+}
+
+form h2 {
+  text-align: center;
+}
+
+form label, form input{
+  position: relative;
+  left: 10px;
+}
+
+form label {
+margin-left: 150px;
+width: 100px;
+font-size: large;
+font-weight: bolder;
+}
+
+form input {
+  width: 60%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px 18px;
+  background-color: rgb(234, 243, 243);
+  color:rgb(12, 57, 102);
+  font-size: large;
+  font-weight: bold;
+  
+}
+
+input[type=password] {
+  margin-bottom: 40px;
+}
+
+form button {
+  width: 200px;
+  margin: auto;
+}

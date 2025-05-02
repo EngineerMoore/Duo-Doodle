@@ -33,13 +33,19 @@ const Login = ({ token, setToken }) => {
     <>
       <form onSubmit={logIn}>
         <h2>Log In</h2>
+        <label for="email">Email</label>
         <input
+          id="email"
+          name="email"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label for="password">Password</label>
         <input
+          id="password"
+          name="password"
           type="password"
           placeholder="Password"
           value={password}

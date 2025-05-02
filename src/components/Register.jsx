@@ -47,32 +47,46 @@ const Register = () => {
     <>
       <form onSubmit={createAccount}>
         <h2>Create an account</h2>
+        <label for="first-name">First Name</label>
         <input
+          id="first-name"
+          name="first-name"
           type="text"
           value={firstName}
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
         />
+        <label for="last-name">Last Name</label>
         <input
+          id="last-name"
+          name="last-name"
           type="text"
           value={lastName}
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
         />
+        <label for="username">Username</label>
         <input
+          id="username"
+          name="username"
           type="text"
           value={username}
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
+        <label for="email">Email</label>
         <input
+          id="email"
+          name="email"
           type="email"
           value={email}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label for="password">Password</label>
         <input
-        // TODO: type="password"
+          id="password"
+          name="password"
           type="password"
           value={password}
           placeholder="Password"
