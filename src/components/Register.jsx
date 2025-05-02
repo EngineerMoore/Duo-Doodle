@@ -95,7 +95,9 @@ const Register = () => {
         <button>Sign Up</button>
       </form>
       <p>{registerErr}</p>
-      <Link to="/login">Already have an account? Log in</Link>
+      <p className="auth-redirect-wrap">
+        <Link to="/login" className="auth-redirect">Already have an account? Log in</Link>
+      </p>
     </>
   )
 }

@@ -54,7 +54,9 @@ const Login = ({ token, setToken }) => {
         <button>Log In</button>
         <p>{loginErr}</p>
       </form>
-      <Link to="/register">Don't have an account? Create an Account</Link>
+      <p className="auth-redirect-wrap">
+        <Link to="/register" className="auth-redirect">Don't have an account? Create an Account</Link>
+      </p>
     </>
   )
 }
