@@ -17,6 +17,43 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   const [timer, setTimer] = useState(`2:00`);
   const navigate = useNavigate();
 
+  const handleTopicClick = () => {
+    const topics = [
+      'animal.type',
+      'commerce.department',
+      'commerce.product',
+      'commerce.productMaterial',
+      'food.fruit',
+      'food.vegetable',
+      'location.continent',
+      'location.country',
+      'person.sex',
+      'vehicle.manufacturer',
+      'vehicle.type',
+      'word.noun',
+    ]
+    const fakerMethods = {
+      'animal.type': faker.animal.type,
+      'commerce.department': faker.commerce.department,
+      'commerce.product': faker.commerce.product,
+      'commerce.productMaterial': faker.commerce.productMaterial,
+      'food.fruit': faker.food.fruit,
+      'food.vegetable': faker.food.vegetable,
+      'location.continent': faker.location.continent,
+      'location.country': faker.location.country,
+      'person.sex': faker.person.sex,
+      'vehicle.manufacturer': faker.vehicle.manufacturer,
+      'vehicle.type': faker.vehicle.type,
+      'word.noun': faker.word.noun,
+    };
+
+    const topicIdx = Math.floor(Math.random() * topics.length);
+    const topic = fakerMethods[topics[topicIdx]]();
+    socket.emit('correct', topic)
+    setCorrectAnswer(topic);
+  }
+
+
   useEffect(() => {
     socket.on('artist', () => {
       setPlayer('artist');
@@ -47,43 +84,9 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   }, [])
 
   useEffect(() => {
-    const generateTopic = () => {
-      const topics = [
-        'animal.type',
-        'commerce.department',
-        'commerce.product',
-        'commerce.productMaterial',
-        'food.fruit',
-        'food.vegetable',
-        'location.continent',
-        'location.country',
-        'person.sex',
-        'vehicle.manufacturer',
-        'vehicle.type',
-        'word.noun',
-      ]
-      const fakerMethods = {
-        'animal.type': faker.animal.type,
-        'commerce.department': faker.commerce.department,
-        'commerce.product': faker.commerce.product,
-        'commerce.productMaterial': faker.commerce.productMaterial,
-        'food.fruit': faker.food.fruit,
-        'food.vegetable': faker.food.vegetable,
-        'location.continent': faker.location.continent,
-        'location.country': faker.location.country,
-        'person.sex': faker.person.sex,
-        'vehicle.manufacturer': faker.vehicle.manufacturer,
-        'vehicle.type': faker.vehicle.type,
-        'word.noun': faker.word.noun,
-      };
 
-      const topicIdx = Math.floor(Math.random() * topics.length);
-      const topic = fakerMethods[topics[topicIdx]]();
-      socket.emit('correct', topic)
-      setCorrectAnswer(topic);
-    }
 
-    if (player === 'artist') generateTopic();
+    if (player === 'artist') handleTopicClick();
 
 
     let timeRemaining = 15;
@@ -121,13 +124,10 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
 
 
   if (timer === '0:00') {
-    // emit 'renderResults'
     socket.emit('renderResults');
-      // when 'renderResults' is received on play page
-        // if guesser
-          // emit wrong answers w/ delay to give artist time to make it to results
-        // navigate to results
   };
+
+
 
   return (
     <>
@@ -162,6 +162,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
           setRenderColor={ setRenderColor }
           // ctxRef={ ctxRef }
           canvasRef={ canvasRef }
+          handleTopicClick={handleTopicClick}
         /> :
         <Guess
           wrongAnswers={ wrongAnswers }
