@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { socket } from "../socket"
+import { socket } from "../socket";
 
 const Homepage = ({ token }) => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Homepage = ({ token }) => {
         but no worries, you'll also have the chance to be the guesser.
       </p>
       {/*TODO: add img link */}
-      <img alt="gif of user submitting their drawing"/>
+      <img alt="gif of user submitting their drawing" src="../public/duo-doodle-homepage-artist.png"/>
 
       <h3>Guesser</h3>
       <p>
