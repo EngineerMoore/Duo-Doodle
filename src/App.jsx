@@ -6,11 +6,10 @@ import Login from "./components/Login";
 import Play from "./components/Play";
 import Results from "./components/Results";
 
-/* TODO: /profile -> /profile:username
-use find to search all pages and correct */
+
 const App = () => {
-  const [ token, setToken ] = useState(``);
-  const [correctAnswer, setCorrectAnswer] = useState(`Cat`);
+  const [token, setToken] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswers, setWrongAnswers] = useState([]);
 
   return (
