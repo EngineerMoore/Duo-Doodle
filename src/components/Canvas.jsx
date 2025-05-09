@@ -200,7 +200,7 @@ const Canvas = ({
     <canvas id="canvas"
     ref={ canvasRef }
     width={600}
-    height={450}></canvas>
+    height={450}>Drawing Image</canvas>
     </>
   );
 };
