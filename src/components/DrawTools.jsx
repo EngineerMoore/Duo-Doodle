@@ -4,7 +4,6 @@ import { GoCircle } from "react-icons/go";
 import { IoTriangleOutline } from "react-icons/io5";
 import { BsBrush } from "react-icons/bs";
 import { BsEraser } from "react-icons/bs";
-import { socket } from "../socket";
 
 
 const DrawTools = ({
