@@ -9,12 +9,12 @@ import { faker } from "@faker-js/faker"
 const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) => {
   const canvasRef = useRef(null);
   const Ref = useRef(null);
-  const [selectedTool, setSelectedTool] = useState("brush");
+  const [selectedTool, setSelectedTool] = useState('brush');
   const [fillColorChecked, setFillColorChecked] = useState(false);
   const [brushWidth, setBrushWidth] = useState(5);
-  const [renderColor, setRenderColor] = useState(`#000`);
+  const [renderColor, setRenderColor] = useState('#000');
   const [player, setPlayer] = useState('artist');
-  const [timer, setTimer] = useState(`2:00`);
+  const [timer, setTimer] = useState('2:00');
   const navigate = useNavigate();
 
   const handleTopicClick = () => {
@@ -84,23 +84,20 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   }, [])
 
   useEffect(() => {
-
-
     if (player === 'artist') handleTopicClick();
-
 
     let timeRemaining = 90;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
-        setTimer(`0:00`);
+        setTimer('0:00');
         clearInterval(startTimer);
         return;
       }
 
       if (timeRemaining <= 30) {
         const addAlert = () => {
-          const timerElement = document.querySelector(`.timer`);
+          const timerElement = document.querySelector('.timer');
           timerElement.id = "timer-alert";
           Ref.current = timerElement.id;
         };
@@ -160,7 +157,6 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
           setFillColorChecked={ setFillColorChecked }
           setBrushWidth={ setBrushWidth }
           setRenderColor={ setRenderColor }
-          // ctxRef={ ctxRef }
           canvasRef={ canvasRef }
           handleTopicClick={handleTopicClick}
         /> :
