@@ -1,17 +1,7 @@
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-// import "./../styles/ResultsPage.css"; // Add this CSS file for styling
+import { useNavigate } from "react-router-dom";
 
 const Results = ({ correctAnswer, wrongAnswers }) => {
-  // const location = useLocation();
   const navigate = useNavigate();
-
-  // const { correctAnswer, wrongAnswers } = location.state || {
-  //   correctAnswer: "Cat",
-  //   wrongAnswers: ["Hole", "BlackHole", "Animal", "Kitten"],
-  // };
-
-
 
   return (
     <div className="holographic-background">
