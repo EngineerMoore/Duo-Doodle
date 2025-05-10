@@ -8,7 +8,7 @@ const Results = ({ correctAnswer, wrongAnswers }) => {
       <h1 className="results-heading">Results</h1>
       <div className="results">
         <h2>Correct Answer</h2>
-        <h3 id="correct">{correctAnswer}Cat</h3>
+        <h3 id="correct">{correctAnswer}</h3>
         <h2>Wrong Attempts</h2>
         <ul className="wrong-results">
           {wrongAnswers.map((answer, index) => (
