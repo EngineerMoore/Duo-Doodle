@@ -14,9 +14,6 @@ const Results = ({ correctAnswer, wrongAnswers }) => {
           {wrongAnswers.map((answer, index) => (
             <li key={index}>{answer}</li>
           ))}
-          <li>high</li>
-          <li>high</li>
-          <li>high</li>
         </ul>
         <button onClick={() => navigate("/play")}>Play Again</button>
       </div>
