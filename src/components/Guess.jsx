@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { socket } from "../socket"
 
 const Guess = ({ wrongAnswers, setWrongAnswers, correctAnswer }) => {
