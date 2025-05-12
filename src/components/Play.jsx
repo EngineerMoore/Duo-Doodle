@@ -14,7 +14,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   const [brushWidth, setBrushWidth] = useState(5);
   const [renderColor, setRenderColor] = useState('#000');
   const [player, setPlayer] = useState('');
-  const [timer, setTimer] = useState('2:00');
+  const [timer, setTimer] = useState('2:30');
   const navigate = useNavigate();
 
   const handleTopicClick = () => {
@@ -86,7 +86,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   useEffect(() => {
     if (player === 'artist') handleTopicClick();
 
-    let timeRemaining = 12;
+    let timeRemaining = 150;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
@@ -131,7 +131,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
       <h1 id = 'prompt'>{
         player === 'artist' ?
         'Your turn to draw!':
-        'Guess the drawing' 
+        'Guess the drawing!' 
       }</h1>
       <h2 id = 'topic' >{
         player === 'artist' ?
