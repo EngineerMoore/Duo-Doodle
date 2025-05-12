@@ -66,7 +66,6 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -102,7 +101,7 @@ button:hover {
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto #241b7b;;
+  outline: 4px auto #241b7b;
 }
 
 #prompt {
@@ -122,25 +121,32 @@ button:focus-visible {
   flex-direction: row-reverse;
   justify-content: center;
   gap: 20px;
-  width: 70%;
   border-radius: 10px;
   box-shadow: 0 0 20px 8px #77648e;
   margin: 20px auto 50px;
   align-content: center;
-  min-width: 300px;
   background-color:  rgba(255, 255, 255, .5);
   padding: 20px 0;
+}
+
+.artist-view {
+  width: 950px;
+}
+
+.guesser-view {
+  width: 1050px;
+  padding-right: 40px;
 }
 
 .timer {
   text-align: center;
   font-family: 'Poetsen One';
-  font-size: 32px ;
+  font-size: 32px;
   color: rgb(168, 195, 234);
 }
 
 #timer-alert {
-  color:red
+  color:red;
 }
 
 .tools-board{
@@ -278,9 +284,18 @@ canvas {
 }
 
 .guesser-container {
-  display: grid;
-  grid-template-columns: 1fr 0.5fr;
-  justify-items: center;
+  margin: 0 auto;
+  width: 400px;
+}
+
+.guess-form {
+  background-color: unset;
+  box-shadow: unset;
+  display:inline-flex ;
+  flex-direction: row;
+  margin: auto;
+  padding: 0;
+  width: 400px;
 }
 
 #guess-input {
@@ -289,12 +304,11 @@ canvas {
   height: 30%;
 }
 
-.guesser-container button {
- grid-area: input-button;
-}
-
 .guesses {
-  grid-area: guesses;
+  width: 200px;
+  margin: 0 0 0 48px;
+  color: rgb(107, 6, 231);
+  font-weight: 700;
 }
 
 form {

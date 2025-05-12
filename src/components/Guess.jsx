@@ -5,6 +5,7 @@ const Guess = ({ wrongAnswers, setWrongAnswers, correctAnswer }) => {
   const [guess, setGuess] = useState("");
 
   const handleGuessSubmit = (e) => {
+    e.preventDefault();
     const correctGuess = guess.toLowerCase() === correctAnswer.toLowerCase() 
     if (!correctGuess) {
       const newAnswersArr = [...wrongAnswers, guess]
@@ -17,21 +18,19 @@ const Guess = ({ wrongAnswers, setWrongAnswers, correctAnswer }) => {
   };
 
   return (
-    <div className="holographic-background">
-      <div className="guesser-container">
-        <div>
-          <input id ="guess-input"
-            type="text"
-            value={guess}
-            onChange={(e) => setGuess(e.target.value)}
-            placeholder="Enter your guess"
-          />
-          <button onClick={(e) => handleGuessSubmit(e)}>Submit Guess</button>
-          <ul className="guesses">{wrongAnswers.map(wrongAnswer => (
-            <li key={wrongAnswer}>{wrongAnswer}</li>
-          ))}</ul>
-        </div>
-      </div>
+    <div className="guesser-container">
+      <form className="guess-form">
+        <input id ="guess-input"
+          type="text"
+          value={guess}
+          onChange={(e) => setGuess(e.target.value)}
+          placeholder="Enter your guess"
+        />
+        <button onClick={(e) => handleGuessSubmit(e)}>Submit Guess</button>
+      </form>
+      <ul className="guesses">{wrongAnswers.map(wrongAnswer => (
+        <li key={wrongAnswer}>{wrongAnswer}</li>
+      ))}</ul>
     </div>
   );
 };

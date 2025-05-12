@@ -86,7 +86,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   useEffect(() => {
     if (player === 'artist') handleTopicClick();
 
-    let timeRemaining = 90;
+    let timeRemaining = 120;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
@@ -138,7 +138,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
         'Topic: ' + correctAnswer:
         '' 
       }</h2>
-      <div className="play-container">
+      <div className={`play-container ${player === "artist"? "artist-view" : "guesser-view"}`}>
       <Canvas
         selectedTool={ selectedTool }
         fillColorChecked={ fillColorChecked }
@@ -163,7 +163,8 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
         <Guess
           wrongAnswers={ wrongAnswers }
           setWrongAnswers={ setWrongAnswers }
-          correctAnswer={ correctAnswer }/>
+          correctAnswer={ correctAnswer }
+        />
       }
       </div>
       <p className="timer">{timer}</p>
