@@ -13,7 +13,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   const [fillColorChecked, setFillColorChecked] = useState(false);
   const [brushWidth, setBrushWidth] = useState(5);
   const [renderColor, setRenderColor] = useState('#000');
-  const [player, setPlayer] = useState('artist');
+  const [player, setPlayer] = useState('');
   const [timer, setTimer] = useState('2:00');
   const navigate = useNavigate();
 
