@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { socket } from "../socket";
 // import artistView from "../assets/artist-view.png"
 const artistView = new URL("/artist-view.PNG", import.meta.url).href
-// const guesserView = new URL(`/guesser-view.png`, import.meta.url).href
+const guesserView = new URL("/guesser-view.PNG", import.meta.url).href
 
 const Homepage = ({ token }) => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Homepage = ({ token }) => {
         Guessing is fun, but no worries, you'll also have the chance to be the artist.
       </p>
       {/*TODO: add img link */}
-      {/* <img alt="screenshot of guesser's game view" src={guesserView} id="guesser-demo"/> */}
+      <img alt="screenshot of guesser's game view" src={guesserView} id="guesser-demo"/>
 
       </div>
   )
