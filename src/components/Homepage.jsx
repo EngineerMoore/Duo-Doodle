@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import { socket } from "../socket";
-// import artistView from "../assets/artist-view.png"
 const artistView = new URL("/artist-view.PNG", import.meta.url).href
 const guesserView = new URL("/guesser-view.PNG", import.meta.url).href
 
@@ -25,7 +24,6 @@ const Homepage = ({ token }) => {
         of the prompt if others can guess correctly. Being an artist is fun,
         but no worries, you'll also have the chance to be the guesser.
       </p>
-      {/*TODO: add img link */}
       <img alt="screenshot of artist's game view" src={artistView}/>
 
       <h3>Guesser</h3>
@@ -34,7 +32,6 @@ const Homepage = ({ token }) => {
         using the submit button before the other guessers have a chance or the timer runs out. The first person to guess correctly wins the round.
         Guessing is fun, but no worries, you'll also have the chance to be the artist.
       </p>
-      {/*TODO: add img link */}
       <img alt="screenshot of guesser's game view" src={guesserView} id="guesser-demo"/>
 
       </div>
