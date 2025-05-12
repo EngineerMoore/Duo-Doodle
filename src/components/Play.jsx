@@ -86,7 +86,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
   useEffect(() => {
     if (player === 'artist') handleTopicClick();
 
-    let timeRemaining = 120;
+    let timeRemaining = 12;
 
     const timeDecrement = () => {
       if (timeRemaining <= 0) {
