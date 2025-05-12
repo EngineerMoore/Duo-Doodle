@@ -25,7 +25,7 @@ const Homepage = ({ token }) => {
         but no worries, you'll also have the chance to be the guesser.
       </p>
       {/*TODO: add img link */}
-      <img alt="screenshot of artist's game view" src="/artist-view.png"/>
+      <img alt="screenshot of artist's game view" src="../artist-view.png"/>
 
       <h3>Guesser</h3>
       <p>
