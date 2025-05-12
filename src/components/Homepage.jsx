@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { socket } from "../socket";
-const artistView = new URL(`../assets/artist-view.png`, import.meta.url).href
-const guesserView = new URL(`../assets/guesser-view.png`, import.meta.url).href
+const artistView = new URL(`/artist-view.png`, import.meta.url).href
+const guesserView = new URL(`/guesser-view.png`, import.meta.url).href
 
 const Homepage = ({ token }) => {
   const navigate = useNavigate();
