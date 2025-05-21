@@ -1,30 +1,14 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { socket } from "../socket";
 
 const Timer = () => {
   const [timer, setTimer] = useState('2:30');
-
-  const Ref = useRef(null);
-
+  const [alert, setAlert] = useState('off');
 
   useEffect(() => {
-    let timeRemaining = 150;
+    let timeRemaining = 5;
 
     const timeDecrement = () => {
-      if (timeRemaining <= 0) {
-        setTimer('0:00');
-        clearInterval(startTimer);
-        return;
-      }
-
-      if (timeRemaining <= 30) {
-        const addAlert = () => {
-          const timerElement = document.querySelector('.timer');
-          timerElement.id = "timer-alert";
-          Ref.current = timerElement.id;
-        };
-        if (!Ref.current) addAlert();
-      }
 
       timeRemaining--;
 
@@ -34,19 +18,24 @@ const Timer = () => {
       const clock = `${minutes}:${seconds > 9 ? seconds : `0${seconds}`}`;
       setTimer(clock);
 
+      if (timeRemaining <= 0) {
+        clearInterval(startTimer);
+      } else if (timeRemaining <= 30) {
+        setAlert('on');
+      }
+
     }
 
     const startTimer = setInterval(timeDecrement, 1000);
 
     return () => clearInterval(startTimer);
 
-    }, [])
+  }, [])
 
-      if (timer === '0:00') {
+  if (timer === '0:00') {
     socket.emit('renderResults');
   };
 
-
-  return <p className="timer">{timer}</p>
+  return <p className='timer' id={alert === 'on' ? 'timer-alert' : ''}>{timer}</p>
 }
 export default Timer;
