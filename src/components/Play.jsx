@@ -4,17 +4,18 @@ import { socket } from "../socket";
 import DrawTools from "./DrawTools";
 import Guess from "./Guess";
 import Canvas from "./Canvas";
-import { faker } from "@faker-js/faker"
+import Timer from "./Timer"
+import { faker } from "@faker-js/faker";
 
 const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) => {
   const canvasRef = useRef(null);
-  const Ref = useRef(null);
+
   const [selectedTool, setSelectedTool] = useState('brush');
   const [fillColorChecked, setFillColorChecked] = useState(false);
   const [brushWidth, setBrushWidth] = useState(5);
   const [renderColor, setRenderColor] = useState('#000');
   const [player, setPlayer] = useState('artist');
-  const [timer, setTimer] = useState('2:30');
+
   const navigate = useNavigate();
 
   const handleTopicClick = () => {
@@ -85,44 +86,9 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
 
   useEffect(() => {
     if (player === 'artist') handleTopicClick();
-
-    let timeRemaining = 150;
-
-    const timeDecrement = () => {
-      if (timeRemaining <= 0) {
-        setTimer('0:00');
-        clearInterval(startTimer);
-        return;
-      }
-
-      if (timeRemaining <= 30) {
-        const addAlert = () => {
-          const timerElement = document.querySelector('.timer');
-          timerElement.id = "timer-alert";
-          Ref.current = timerElement.id;
-        };
-        if (!Ref.current) addAlert();
-      }
-
-      timeRemaining--;
-
-      const minutes = Math.floor(timeRemaining / 60);
-      const seconds = timeRemaining % 60;
-
-      const clock = `${minutes}:${seconds > 9 ? seconds : `0${seconds}`}`;
-      setTimer(clock);
-
-    }
-
-    const startTimer = setInterval(timeDecrement, 1000);
-
-    return () => clearInterval(startTimer);
   }, []);
 
 
-  if (timer === '0:00') {
-    socket.emit('renderResults');
-  };
 
 
 
@@ -167,7 +133,7 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
         />
       }
       </div>
-      <p className="timer">{timer}</p>
+      <Timer />
 
     </>
   )
