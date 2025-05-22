@@ -6,7 +6,7 @@ const Timer = () => {
   const [alert, setAlert] = useState('off');
 
   useEffect(() => {
-    let timeRemaining = 5;
+    let timeRemaining = 150;
 
     const timeDecrement = () => {
 
@@ -19,6 +19,7 @@ const Timer = () => {
       setTimer(clock);
 
       if (timeRemaining <= 0) {
+        socket.emit('renderResults');
         clearInterval(startTimer);
       } else if (timeRemaining <= 30) {
         setAlert('on');
@@ -31,10 +32,6 @@ const Timer = () => {
     return () => clearInterval(startTimer);
 
   }, [])
-
-  if (timer === '0:00') {
-    socket.emit('renderResults');
-  };
 
   return <p className='timer' id={alert === 'on' ? 'timer-alert' : ''}>{timer}</p>
 }
