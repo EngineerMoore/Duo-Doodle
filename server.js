@@ -75,6 +75,11 @@ io.on('connection', (socket) => {
   socket.on('renderResults', () => {
     io.to(playersInfo[socket.id].room).emit('renderResults');
   })
+
+  socket.on('clear-drawing', () => {
+    io.to(playersInfo[socket.id].room).emit('clear-drawing');
+  })
+   
   socket.on('disconnect', (player) => {
     if (!playersInfo[socket.id]) return; 
     const room = playersInfo[socket.id].room;

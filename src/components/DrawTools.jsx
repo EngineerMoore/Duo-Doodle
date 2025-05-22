@@ -4,6 +4,7 @@ import { GoCircle } from "react-icons/go";
 import { IoTriangleOutline } from "react-icons/io5";
 import { BsBrush } from "react-icons/bs";
 import { BsEraser } from "react-icons/bs";
+import { socket } from "../socket";
 
 
 const DrawTools = ({
@@ -20,8 +21,8 @@ const DrawTools = ({
     setSelectedTool(tool);
   }
 
-  const clearDrawing = () => {
-    setClearRect(true);
+  const handleClearRect = () => {
+    socket.emit('clear-drawing');
   }
 
   const handleFillColor = (e) => {
@@ -146,7 +147,7 @@ const DrawTools = ({
         </ul>
       </div>
       <div className="row buttons">
-        <button className="clear-canvas" onClick={clearDrawing}>Clear Canvas</button>
+        <button className="clear-canvas" onClick={handleClearRect}>Clear Canvas</button>
         <button className="change-topic" onClick={handleTopicClick}>Change Topic</button>
       </div>
     </section>

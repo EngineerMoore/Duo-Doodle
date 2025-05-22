@@ -40,10 +40,11 @@ const Canvas = ({
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d", { willReadFrequently: true });
 
-      if (clearRect === true) {
+    socket.on('clear-drawing', () => clearDrawing());
+
+    const clearDrawing = () => {
         context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-        setClearRect(false);
-      }
+    }
    
 
     const startDrawing = (e) => {
@@ -199,6 +200,7 @@ const Canvas = ({
       socket.off(`connection`);
       socket.off(`start-drawing`);
       socket.off(`drawing`);
+      socket.off(`clear-drawing`);
     }
   });
 
