@@ -8,10 +8,12 @@ const Canvas = ({
   fillColorChecked,
   brushWidth,
   renderColor,
+  clearRect,
   setSelectedTool,
   setRenderColor,
   setFillColorChecked,
   setBrushWidth,
+  setClearRect
 }) => {
   const [prevMouseX, setPrevMouseX] = useState();
   const [prevMouseY, setPrevMouseY] = useState();
@@ -37,6 +39,11 @@ const Canvas = ({
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d", { willReadFrequently: true });
+
+      if (clearRect === true) {
+        context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+        setClearRect(false);
+      }
    
 
     const startDrawing = (e) => {

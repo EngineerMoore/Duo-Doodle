@@ -7,8 +7,7 @@ import { BsEraser } from "react-icons/bs";
 
 
 const DrawTools = ({
-  canvasRef,
-  ctxRef,
+  setClearRect,
   selectedTool,
   setSelectedTool,
   setFillColorChecked,
@@ -22,7 +21,7 @@ const DrawTools = ({
   }
 
   const clearDrawing = () => {
-    ctxRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    setClearRect(true);
   }
 
   const handleFillColor = (e) => {
@@ -147,7 +146,7 @@ const DrawTools = ({
         </ul>
       </div>
       <div className="row buttons">
-        <button className="clear-canvas" onClick={() => clearDrawing()}>Clear Canvas</button>
+        <button className="clear-canvas" onClick={clearDrawing}>Clear Canvas</button>
         <button className="change-topic" onClick={handleTopicClick}>Change Topic</button>
       </div>
     </section>
