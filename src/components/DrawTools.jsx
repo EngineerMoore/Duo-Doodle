@@ -8,7 +8,6 @@ import { socket } from "../socket";
 
 
 const DrawTools = ({
-  setClearRect,
   selectedTool,
   setSelectedTool,
   setFillColorChecked,

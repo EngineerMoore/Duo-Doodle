@@ -10,7 +10,6 @@ import { faker } from "@faker-js/faker";
 const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) => {
   const canvasRef = useRef(null);
 
-  const [clearRect, setClearRect] = useState(false);
   const [selectedTool, setSelectedTool] = useState('brush');
   const [fillColorChecked, setFillColorChecked] = useState(false);
   const [brushWidth, setBrushWidth] = useState(5);
@@ -112,16 +111,13 @@ const Play = ({correctAnswer, setCorrectAnswer, wrongAnswers, setWrongAnswers}) 
         brushWidth={ brushWidth }
         renderColor={ renderColor }
         canvasRef={ canvasRef }
-        clearRect={ clearRect}
         setSelectedTool={ setSelectedTool }
         setFillColorChecked={ setFillColorChecked }
         setBrushWidth={ setBrushWidth }
         setRenderColor={ setRenderColor }
-        setClearRect={ setClearRect }
       />
       { player === 'artist' ?      
         <DrawTools
-          setClearRect={ setClearRect }
           selectedTool={ selectedTool }
           setSelectedTool={ setSelectedTool }
           setFillColorChecked={ setFillColorChecked }

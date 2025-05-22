@@ -8,12 +8,10 @@ const Canvas = ({
   fillColorChecked,
   brushWidth,
   renderColor,
-  clearRect,
   setSelectedTool,
   setRenderColor,
   setFillColorChecked,
-  setBrushWidth,
-  setClearRect
+  setBrushWidth
 }) => {
   const [prevMouseX, setPrevMouseX] = useState();
   const [prevMouseY, setPrevMouseY] = useState();
